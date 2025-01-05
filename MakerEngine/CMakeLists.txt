@@ -11,7 +11,7 @@ add_library(MakerEngine SHARED
 "Libraries/spdlog/file_sinks.cpp"
 "Libraries/spdlog/stdout_sinks.cpp"
 "Libraries/spdlog/spdlog.cpp"
-)
+  "Application/Window.h" "Application/Window.cpp")
 
 # Define MAKERENGINE_EXPORTS to export symbols
 target_compile_definitions(MakerEngine PRIVATE MAKERENGINE_EXPORTS)
