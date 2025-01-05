@@ -26,6 +26,9 @@ else()
   target_compile_options(MakerEngine PRIVATE "-finput-charset=UTF-8")
 endif()
 
+# Target link libraries
+target_link_libraries(MakerEngine PRIVATE "Libraries/GLFW/glfw3.lib")
+
 # Include directories
 include_directories(MakerEngine PUBLIC "Global")
 include_directories(MakerEngine PUBLIC "Libraries")
