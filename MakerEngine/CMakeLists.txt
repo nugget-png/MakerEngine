@@ -10,6 +10,7 @@ add_library(MakerEngine SHARED
 "Libraries/spdlog/color_sinks.cpp"
 "Libraries/spdlog/file_sinks.cpp"
 "Libraries/spdlog/stdout_sinks.cpp"
+"Libraries/spdlog/spdlog.cpp"
 )
 
 # Define MAKERENGINE_EXPORTS to export symbols
