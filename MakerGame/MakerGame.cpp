@@ -1,12 +1,15 @@
-﻿// MakerGame.cpp : Defines the entry point for the application.
-//
+﻿#include <iostream>
+#include <MakerEngine.h>
 
-#include "MakerGame.h"
+using namespace MakerEngine;
 
-using namespace std;
+int main() {
+	Engine engine;
+	engine.initialize();
 
-int main()
-{
-	cout << "Hello CMake." << endl;
+	spdlog::info("Ready");
+	system("pause");
+
+	engine.shutdown();
 	return 0;
 }

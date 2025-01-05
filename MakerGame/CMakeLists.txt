@@ -1,5 +1,5 @@
 ﻿# Add source to this project's executable.
-add_executable (MakerGame "MakerGame.cpp" "MakerGame.h")
+add_executable (MakerGame "MakerGame.cpp" )
 
 # Use UTF-8 encoding for MSVC and non-MSVC compilers
 if (MSVC)
