@@ -28,7 +28,7 @@ namespace MakerEngine {
 
 	void Engine::initialize() {
 		spdlog::info("MakerEngine initializing");
-		spdlog::info("Running on ", currentPlatform(), " platform");
+		spdlog::info("Running on {} platform", currentPlatform());
 	}
 
 	void Engine::shutdown() {
