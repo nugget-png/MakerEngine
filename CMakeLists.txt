@@ -12,7 +12,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Use UTF-8 encoding
 if (MSVC)
-  add_compile_options("/utf-8")
+	add_compile_options("/utf-8")
 endif()
 
 if (NOT MSVC)
