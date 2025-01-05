@@ -1,5 +1,8 @@
+#include "MakerEngine.h"
 
-#ifdef _WIN32
+// TODO: Add cross-platform support for DLL entry point
+
+#ifdef PLATFORM_WINDOWS
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
