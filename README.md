@@ -29,7 +29,7 @@ Before building, make sure you have the [Vulkan SDK](https://www.lunarg.com/vulk
     git clone https://github.com/nugget-png/MakerEngine.git
     ```
 3. **Open the folder in Visual Studio**.
-4. **Select your desired build configuration**
+4. **Select your desired build configuration**.
 5. **Press Run** (the green button on the toolbar) or press **F5** to build and run the engine.
  
 ### Building with CMake:
