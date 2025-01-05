@@ -13,5 +13,5 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 project ("MakerEngine")
 
 # Add sub-projects.
-add_subdirectory("MakerGame")
+add_subdirectory("GamePlayer")
 add_subdirectory("MakerEngine")
