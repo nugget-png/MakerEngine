@@ -30,10 +30,10 @@
 namespace MakerEngine {
 	MAKERENGINE_API std::string currentPlatform();
 
-	class MAKERENGINE_API MakerEngine {
+	class MAKERENGINE_API Engine {
 	public:
-		MakerEngine();
-		~MakerEngine();
+		Engine();
+		~Engine();
 
 		void initialize();
 		void shutdown();

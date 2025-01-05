@@ -18,20 +18,20 @@ namespace MakerEngine {
 		return platform;
 	}
 
-	MakerEngine::MakerEngine() {
+	Engine::Engine() {
 
 	}
 
-	MakerEngine::~MakerEngine() {
+	Engine::~Engine() {
 
 	}
 
-	void MakerEngine::initialize() {
+	void Engine::initialize() {
 		spdlog::info("MakerEngine initializing");
 		spdlog::info("Running on ", currentPlatform(), " platform");
 	}
 
-	void MakerEngine::shutdown() {
+	void Engine::shutdown() {
 		spdlog::info("MakerEngine shutting down");
 	}
 }
