@@ -17,8 +17,7 @@
   - 3D support 
   - An entity component system
   - Scene management
-  - More planned features coming soon
-
+    
 ## Building the Engine
 
 Before building, make sure you have the [Vulkan SDK](https://www.lunarg.com/vulkan-sdk/) installed on your system.
