@@ -9,4 +9,4 @@ else()
 endif()
 
 # Link to the MakerEngine library
-target_link_libraries(MakerGame PUBLIC ${CMAKE_BINARY_DIR}/lib/MakerEngine.lib)
+target_link_libraries(MakerGame PUBLIC ${CMAKE_BINARY_DIR}/MakerEngine/MakerEngine.lib)
