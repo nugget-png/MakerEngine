@@ -20,3 +20,4 @@ target_compile_definitions(MakerEngine PRIVATE SPDLOG_COMPILED_LIB)
 
 # Include directories
 include_directories(MakerEngine PUBLIC "Global")
+include_directories(MakerEngine PUBLIC "Libraries")
