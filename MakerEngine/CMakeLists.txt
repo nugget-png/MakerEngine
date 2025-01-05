@@ -27,7 +27,7 @@ else()
 endif()
 
 # Target link libraries
-target_link_libraries(MakerEngine PRIVATE "Libraries/GLFW/glfw3.lib")
+target_link_libraries(MakerEngine PRIVATE ${CMAKE_SOURCE_DIR}/MakerEngine/Libraries/GLFW/glfw3.lib)
 
 # Include directories
 include_directories(MakerEngine PUBLIC "Global")
