@@ -6,6 +6,19 @@ if (POLICY CMP0141)
   set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
 endif()
 
+# Require C++17
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Use UTF-8 encoding
+if (MSVC)
+  add_compile_options("/utf-8")
+endif()
+
+if (NOT MSVC)
+	add_compile_options(-finput-charset=UTF-8)
+endif()
+
 project ("MakerEngine")
 
 # Add sub-projects.
