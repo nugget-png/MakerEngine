@@ -15,5 +15,7 @@ namespace MakerEngine {
 			// In case of an error, return "Unknown"
 			platform = "Unknown";
 		#endif
+
+		return platform;
 	}
 }
