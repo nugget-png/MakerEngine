@@ -3,6 +3,7 @@
 // Description: Global definitions for the engine
 
 #include <string>
+#include <spdlog/spdlog.h>
 
 #ifdef _WIN32
 	#define PLATFORM_WINDOWS
@@ -28,4 +29,15 @@
 
 namespace MakerEngine {
 	MAKERENGINE_API std::string currentPlatform();
+
+	class MAKERENGINE_API MakerEngine {
+	public:
+		MakerEngine();
+		~MakerEngine();
+
+		void initialize();
+		void shutdown();
+	private:
+		// No private members for now
+	};
 }

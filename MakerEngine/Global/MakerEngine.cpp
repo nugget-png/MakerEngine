@@ -17,4 +17,21 @@ namespace MakerEngine {
 
 		return platform;
 	}
+
+	MakerEngine::MakerEngine() {
+
+	}
+
+	MakerEngine::~MakerEngine() {
+
+	}
+
+	void MakerEngine::initialize() {
+		spdlog::info("MakerEngine initializing");
+		spdlog::info("Running on ", currentPlatform(), " platform");
+	}
+
+	void MakerEngine::shutdown() {
+		spdlog::info("MakerEngine shutting down");
+	}
 }
