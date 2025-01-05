@@ -13,8 +13,6 @@
 #endif
 
 #ifdef PLATFORM_WINDOWS
-	#define WIN32_LEAN_AND_MEAN // Exclude rarely-used stuff from Windows headers
-	#include <windows.h>
 	#ifdef MAKERENGINE_EXPORTS
 		#define MAKERENGINE_API __declspec(dllexport)
 	#else
