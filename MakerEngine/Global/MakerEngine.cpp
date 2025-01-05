@@ -1,9 +1,8 @@
 #include "MakerEngine.h"
 
 namespace MakerEngine {
-	std::string& currentPlatform() {
-		// Static variable to retain its value across function calls
-		static std::string platform;
+	std::string currentPlatform() {
+		std::string platform;
 
 		#ifdef PLATFORM_WINDOWS
 			platform = "Windows";

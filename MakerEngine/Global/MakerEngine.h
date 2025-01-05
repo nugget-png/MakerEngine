@@ -27,5 +27,5 @@
 #endif
 
 namespace MakerEngine {
-	std::string& MAKERENGINE_API currentPlatform();
+	MAKERENGINE_API std::string currentPlatform();
 }
