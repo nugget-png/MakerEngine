@@ -6,6 +6,7 @@
 
 ## Current Status
    - The foundation of the engine is being developed using a CMake-based build system.
+   - The engine currently doesn't many source files since the project just started.
    - The engine will use Vulkan for rendering, however no functionality has been implemented yet.
    - The engine will eventually support multiple platforms (Windows, macOS, Linux).
    - The engine does not currently have the ability to create windows or render anything.
