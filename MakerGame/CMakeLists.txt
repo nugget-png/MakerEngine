@@ -7,3 +7,6 @@ if (MSVC)
 else()
   target_compile_options(MakerGame PRIVATE "-finput-charset=UTF-8")
 endif()
+
+# Link to the MakerEngine library
+target_link_libraries(MakerGame PUBLIC ${CMAKE_BINARY_DIR}/lib/MakerEngine.lib)
