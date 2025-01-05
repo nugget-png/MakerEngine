@@ -10,3 +10,8 @@ endif()
 
 # Link to the MakerEngine library
 target_link_libraries(MakerGame PUBLIC ${CMAKE_BINARY_DIR}/MakerEngine/MakerEngine.lib)
+
+# Add MakerEngine include directories
+include_directories(MakerGame PUBLIC ${CMAKE_SOURCE_DIR}/MakerEngine)
+include_directories(MakerGame PUBLIC ${CMAKE_SOURCE_DIR}/MakerEngine/Libraries)
+include_directories(MakerGame PUBLIC ${CMAKE_SOURCE_DIR}/MakerEngine/Global)
