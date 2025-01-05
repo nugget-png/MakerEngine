@@ -10,7 +10,7 @@ extern "C" BOOL APIENTRY DllMain(HINSTANCE hInstance, DWORD ul_reason_for_call, 
 	switch (ul_reason_for_call) {
     case DLL_PROCESS_ATTACH:
         // Code to run when the DLL is loaded by a process
-
+		spdlog::info("MakerEngine begin");
         break;
     case DLL_THREAD_ATTACH:
         // Code to run when a thread is created in a process
@@ -22,7 +22,7 @@ extern "C" BOOL APIENTRY DllMain(HINSTANCE hInstance, DWORD ul_reason_for_call, 
         break;
     case DLL_PROCESS_DETACH:
         // Code to run when the DLL is unloaded by a process
-
+        spdlog::info("MakerEngine end");
         break;
 	}
 	return TRUE;
