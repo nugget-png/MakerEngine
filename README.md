@@ -12,7 +12,6 @@
    - The engine does not currently have the ability to create windows or render anything.
 
 ## Planned Features
-(Some of these features might not be added until way later on)
   - Scripting with Lua
   - An editor implemented with ImGui
   - 3D support 
