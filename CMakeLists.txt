@@ -1,7 +1,4 @@
-﻿# CMakeList.txt : Top-level CMake project file, do global configuration
-# and include sub-projects here.
-#
-cmake_minimum_required (VERSION 3.8)
+﻿cmake_minimum_required (VERSION 3.14)
 
 # Enable Hot Reload for MSVC compilers if supported.
 if (POLICY CMP0141)
@@ -11,5 +8,6 @@ endif()
 
 project ("MakerEngine")
 
-# Include sub-projects.
-add_subdirectory ("MakerGame")
+# Add sub-projects.
+add_subdirectory("MakerGame")
+add_subdirectory("MakerEngine")
