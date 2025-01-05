@@ -18,6 +18,13 @@ target_compile_definitions(MakerEngine PRIVATE MAKERENGINE_EXPORTS)
 # Define SPDLOG_COMPILED_LIB to build spdlog
 target_compile_definitions(MakerEngine PRIVATE SPDLOG_COMPILED_LIB)
 
+# Use UTF-8 encoding for MSVC and non-MSVC compilers
+if (MSVC)
+  target_compile_options(MakerEngine PRIVATE "/utf-8")
+else()
+  target_compile_options(MakerEngine PRIVATE "-finput-charset=UTF-8")
+endif()
+
 # Include directories
 include_directories(MakerEngine PUBLIC "Global")
 include_directories(MakerEngine PUBLIC "Libraries")
