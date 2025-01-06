@@ -16,9 +16,10 @@ namespace MakerEngine {
                 ~VulkanInstance();
 
                 void create(const std::string& appName, uint32_t appVersion);
-                void destroy();
 
             private:
+                void destroy();
+
                 VkInstance instance;
             };
         }
