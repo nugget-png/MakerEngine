@@ -15,3 +15,5 @@ target_link_libraries(GamePlayer PUBLIC ${CMAKE_BINARY_DIR}/MakerEngine/MakerEng
 target_include_directories(GamePlayer PUBLIC ${CMAKE_SOURCE_DIR}/MakerEngine)
 target_include_directories(GamePlayer PUBLIC ${CMAKE_SOURCE_DIR}/MakerEngine/Libraries)
 target_include_directories(GamePlayer PUBLIC ${CMAKE_SOURCE_DIR}/MakerEngine/Global)
+set (VulkanSDK "C:/VulkanSDK/1.3.296.0") # Change this to your VulkanSDK path if building from source
+target_include_directories(MakerEngine PUBLIC "${VulkanSDK}/Include")
