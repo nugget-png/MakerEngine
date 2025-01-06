@@ -2,7 +2,7 @@
 
 namespace MakerEngine {
 	namespace Application {
-		Window::Window() {
+		Window::Window() : window(nullptr), width(500), height(500), name("Default Window Title") {
 
 		}
 
