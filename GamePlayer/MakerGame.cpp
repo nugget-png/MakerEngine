@@ -1,20 +1,27 @@
 #include <iostream>
 #include <MakerEngine.h>
 #include <Application/Window.h>
+#include <Graphics/Vulkan/VulkanInstance.h>
 
 using namespace MakerEngine;
 
 int main() {
-	Engine engine;
+    Engine engine;
     Application::Window window;
+    Graphics::Vulkan::VulkanInstance vulkanInstance;
 
-	engine.initialize();
+    engine.initialize();
+    vulkanInstance.create("Game Player", VK_MAKE_VERSION(1, 0, 0));
 
+ 
     window.create(1280, 720, "Game Player");
     window.runLoop();
+
     window.destroy();
+    engine.shutdown();
 
-	engine.shutdown();
+    vulkanInstance.destroy();
 
-	return 0;
+    return 0;
 }
+
