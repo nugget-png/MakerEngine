@@ -1,0 +1,63 @@
+#include "VulkanInstance.h"
+
+namespace MakerEngine {
+    namespace Graphics {
+        namespace Vulkan {
+            VulkanInstance::VulkanInstance() : instance(VK_NULL_HANDLE) {
+
+            }
+
+            void VulkanInstance::create(const std::string& appName, uint32_t appVersion) {
+                // Specify application info for Vulkan instance creation
+                VkApplicationInfo appInfo{};
+                appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
+                appInfo.pApplicationName = appName.c_str();        // Name of the application
+                appInfo.applicationVersion = appVersion;           // Version of the application
+                appInfo.pEngineName = "Maker Engine";              // Engine name
+                appInfo.engineVersion = VK_MAKE_VERSION(0, 1, 0);  // Engine version
+                appInfo.apiVersion = VK_MAKE_VERSION(1, 3, 296);   // Vulkan API version
+
+                // Setup Vulkan instance creation info
+                VkInstanceCreateInfo createInfo{};
+                createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+                createInfo.pApplicationInfo = &appInfo;
+
+                // Retrieve and enable required GLFW extensions for Vulkan
+                uint32_t glfwExtensionCount = 0;
+                const char** glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
+                createInfo.enabledExtensionCount = glfwExtensionCount;
+                createInfo.ppEnabledExtensionNames = glfwExtensions;
+
+                // No validation layers enabled at this point
+                createInfo.enabledLayerCount = 0;
+
+                // Create the Vulkan instance
+                VkResult result = vkCreateInstance(&createInfo, nullptr, &instance);
+                if (result != VK_SUCCESS) {
+                    spdlog::critical("Failed to create Vulkan instance!");
+                    throw std::runtime_error("Failed to create Vulkan instance!");
+                }
+
+                // Log Vulkan instance creation success and app info
+                spdlog::debug("Vulkan instance created successfully");
+                spdlog::debug("App Info Data:");
+                spdlog::debug("pApplicationName: {}", appInfo.pApplicationName);
+                spdlog::debug("applicationVersion: {}", appInfo.applicationVersion);
+                spdlog::debug("pEngineName: {}", appInfo.pEngineName);
+                spdlog::debug("engineVersion: {}", appInfo.engineVersion);
+                spdlog::debug("apiVersion: {}", appInfo.apiVersion);
+            }
+
+            void VulkanInstance::destroy() {
+                if (instance != VK_NULL_HANDLE) {
+                    vkDestroyInstance(instance, nullptr);
+                    spdlog::debug("Vulkan instance destroyed");
+                }
+            }
+
+            VulkanInstance::~VulkanInstance() {
+                destroy();
+            }
+        }
+    }
+}
