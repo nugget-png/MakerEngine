@@ -8,8 +8,8 @@
    - The foundation of the engine is being developed using a CMake-based build system.
    - The engine currently doesn't have many source files since the project just started.
    - The engine will use Vulkan for rendering, however no functionality has been implemented yet.
-   - The engine will eventually support multiple platforms (Windows, macOS, Linux).
-   - The engine does not currently have the ability to create windows or render anything.
+   - The engine plans to eventually support multiple platforms (Windows, macOS, Linux).
+   - The engine can create a very basic window, but can't render anything.
 
 ## Planned Features
   - Scripting with Lua
@@ -43,7 +43,7 @@ Before building, make sure you have the [Vulkan SDK](https://www.lunarg.com/vulk
     mkdir build
     cd build
     ```
-3. **Build the Engine**
+3. **Build the Engine**:
    - Build type can be Release, Debug, or RelWithDebugInfo
    ```shell
    cmake -DCMAKE_BUILD_TYPE=[YourBuildType] ..
