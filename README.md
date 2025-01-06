@@ -19,8 +19,11 @@
   - Scene management
     
 ## Building the Engine
-
-Before building, make sure you have the [Vulkan SDK](https://www.lunarg.com/vulkan-sdk/) (v1.3.296.0) installed on your system.
+Before building the engine, please make sure you have the following dependencies installed:
+1. **Vulkan SDK**
+   - For all platforms except macOS, make sure you have the [Vulkan SDK](https://www.lunarg.com/vulkan-sdk/).
+2. **MoltenVK (For macOS)**
+   - macOS users need [MoltenVK](https://github.com/KhronosGroup/MoltenVK) instead of the standard SDK to interface with Apple's Metal framework.
 
 ### Building in Visual Studio:
 1. **Install [Visual Studio](https://visualstudio.microsoft.com/downloads/)** if you haven't already.
