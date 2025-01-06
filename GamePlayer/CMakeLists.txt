@@ -1,4 +1,4 @@
-﻿# Add source to this project's executable.
+# Add source to this project's executable.
 add_executable (GamePlayer "MakerGame.cpp" )
 
 # Use UTF-8 encoding for MSVC and non-MSVC compilers
@@ -12,6 +12,6 @@ endif()
 target_link_libraries(GamePlayer PUBLIC ${CMAKE_BINARY_DIR}/MakerEngine/MakerEngine.lib)
 
 # Add MakerEngine include directories
-include_directories(GamePlayer PUBLIC ${CMAKE_SOURCE_DIR}/MakerEngine)
-include_directories(GamePlayer PUBLIC ${CMAKE_SOURCE_DIR}/MakerEngine/Libraries)
-include_directories(GamePlayer PUBLIC ${CMAKE_SOURCE_DIR}/MakerEngine/Global)
+target_include_directories(GamePlayer PUBLIC ${CMAKE_SOURCE_DIR}/MakerEngine)
+target_include_directories(GamePlayer PUBLIC ${CMAKE_SOURCE_DIR}/MakerEngine/Libraries)
+target_include_directories(GamePlayer PUBLIC ${CMAKE_SOURCE_DIR}/MakerEngine/Global)

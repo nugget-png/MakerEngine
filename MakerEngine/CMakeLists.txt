@@ -30,10 +30,10 @@ endif()
 target_link_libraries(MakerEngine PRIVATE ${CMAKE_SOURCE_DIR}/MakerEngine/Libraries/GLFW/glfw3.lib)
 
 # Include directories
-include_directories(MakerEngine PUBLIC "Global")
-include_directories(MakerEngine PUBLIC "Libraries")
+target_include_directories(MakerEngine PUBLIC "Global")
+target_include_directories(MakerEngine PUBLIC "Libraries")
 
 # Using VulkanSDK 1.3.296.0
 set (VulkanSDK "C:/VulkanSDK/1.3.296.0") # Change this to your VulkanSDK path if building from source
-include_directories(MakerEngine PUBLIC "${VulkanSDK}/Include")
+target_include_directories(MakerEngine PUBLIC "${VulkanSDK}/Include")
 target_link_libraries(MakerEngine PRIVATE "${VulkanSDK}/Lib/vulkan-1.lib")
