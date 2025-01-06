@@ -20,7 +20,7 @@
     
 ## Building the Engine
 
-Before building, make sure you have the [Vulkan SDK](https://www.lunarg.com/vulkan-sdk/) installed on your system.
+Before building, make sure you have the [Vulkan SDK](https://www.lunarg.com/vulkan-sdk/) (v1.3.296.0) installed on your system.
 
 ### Building in Visual Studio:
 1. **Install [Visual Studio](https://visualstudio.microsoft.com/downloads/)** if you haven't already.
