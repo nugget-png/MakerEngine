@@ -20,7 +20,7 @@ int main() {
     window.destroy();
     engine.shutdown();
 
-    vulkanInstance.destroy();
+    // No need to clean up VulkanInstance, its done automatically in its destructor
 
     return 0;
 }
