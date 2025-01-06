@@ -13,6 +13,10 @@
 	#define PLATFORM_MACOS
 #endif
 
+#ifdef _DEBUG
+    #define MAKERENGINE_DEBUG
+#endif
+
 #ifdef PLATFORM_WINDOWS
 	#ifdef MAKERENGINE_EXPORTS
 		#define MAKERENGINE_API __declspec(dllexport)
