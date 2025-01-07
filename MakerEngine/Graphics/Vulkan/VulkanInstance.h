@@ -19,14 +19,36 @@ namespace MakerEngine {
                 void create(const std::string& appName, uint32_t appVersion);
 
             private:
-
                 bool checkValidationLayerSupport();
 
                 std::vector<const char*> getRequiredExtensions();
 
+                static VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(
+                    VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
+                    VkDebugUtilsMessageTypeFlagsEXT messageType,
+                    const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData,
+                    void* pUserData
+                );
+
+                VkResult CreateDebugUtilsMessengerEXT(
+                    VkInstance instance,
+                    const VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo,
+                    const VkAllocationCallbacks* pAllocator,
+                    VkDebugUtilsMessengerEXT* pDebugMessenger
+                );
+
+                void DestroyDebugUtilsMessengerEXT(
+                    VkInstance instance,
+                    VkDebugUtilsMessengerEXT debugMessenger,
+                    const VkAllocationCallbacks* pAllocator
+                );
+
+                void createDebugMessenger();
+
                 void destroy();
 
                 bool enableValidationLayers;
+                VkDebugUtilsMessengerEXT debugMessenger;
                 VkInstance instance;
             };
         }

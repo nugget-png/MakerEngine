@@ -3,7 +3,9 @@
 namespace MakerEngine {
     namespace Graphics {
         namespace Vulkan {
-            VulkanInstance::VulkanInstance() : instance(VK_NULL_HANDLE), enableValidationLayers(false) {
+            VulkanInstance::VulkanInstance()
+                : instance(VK_NULL_HANDLE), enableValidationLayers(false), debugMessenger(VK_NULL_HANDLE)
+            {
 
             }
 
@@ -56,6 +58,11 @@ namespace MakerEngine {
                 if (result != VK_SUCCESS) {
                     spdlog::critical("Failed to create Vulkan instance!");
                     throw std::runtime_error("Failed to create Vulkan instance!");
+                }
+
+                // Create the debug messenger if validation layers are enabled
+                if (enableValidationLayers) {
+                    createDebugMessenger();
                 }
 
                 // Enumerate all available Vulkan extensions
@@ -118,9 +125,102 @@ namespace MakerEngine {
                 if (enableValidationLayers) {
                     extensions.emplace_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
                 }
+
+                return extensions;
+            }
+
+            VKAPI_ATTR VkBool32 VKAPI_CALL VulkanInstance::debugCallback(
+                VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
+                VkDebugUtilsMessageTypeFlagsEXT messageType,
+                const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData,
+                void* pUserData
+            )
+
+            {
+                if (messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT) {
+                    spdlog::debug("Validation layer: (INFO) {}", pCallbackData->pMessage);
+                }
+                else if (messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT) {
+                    spdlog::warn("Validation layer: (WARNING) {}", pCallbackData->pMessage);
+                }
+                else if (messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT) {
+                    spdlog::error("Validation layer: (ERROR) {}", pCallbackData->pMessage);
+                }
+                else if (messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT) {
+                    spdlog::debug("Validation layer (VERBOSE): {}", pCallbackData->pMessage);
+                }
+
+                return VK_FALSE;
+            }
+
+            VkResult VulkanInstance::CreateDebugUtilsMessengerEXT(
+                VkInstance instance,
+                const VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo,
+                const VkAllocationCallbacks* pAllocator,
+                VkDebugUtilsMessengerEXT* pDebugMessenger
+            )
+
+            {
+                auto function =
+                    (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT");
+
+                if (function != nullptr) {
+                    function(instance, pCreateInfo, pAllocator, pDebugMessenger);
+                }
+                else {
+                    return VK_ERROR_EXTENSION_NOT_PRESENT;
+                }
+
+                return VK_SUCCESS;
+            }
+
+
+            void VulkanInstance::DestroyDebugUtilsMessengerEXT(
+                VkInstance instance,
+                VkDebugUtilsMessengerEXT debugMessenger,
+                const VkAllocationCallbacks* pAllocator
+            )
+
+            {
+                auto function =
+                    (PFN_vkDestroyDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkDestroyDebugUtilsMessengerEXT");
+
+                if (function != nullptr) {
+                    function(instance, debugMessenger, pAllocator);
+                }
+            }
+
+            void VulkanInstance::createDebugMessenger() {
+                VkDebugUtilsMessengerCreateInfoEXT createInfo{};
+                createInfo.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
+
+                createInfo.messageSeverity = VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT    |
+                                             VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT |
+                                             VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT   |
+                                             VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT ;
+
+                createInfo.messageType = VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT    |
+                                         VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT |
+                                         VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
+
+                createInfo.pfnUserCallback = debugCallback;
+                createInfo.pUserData = nullptr; // Not required
+
+                VkResult result = CreateDebugUtilsMessengerEXT(instance, &createInfo, nullptr, &debugMessenger);
+                if (result != VK_SUCCESS) {
+                    spdlog::critical("Failed to create debug utils messenger ext!");
+                    throw std::runtime_error("Failed to create debug utils messenger ext!");
+                }
+
+                spdlog::debug("Successfully created debug utils messenger ext");
             }
 
             void VulkanInstance::destroy() {
+                if (enableValidationLayers && debugMessenger != VK_NULL_HANDLE) {
+                    DestroyDebugUtilsMessengerEXT(instance, debugMessenger, nullptr);
+                    spdlog::debug("Debug utils messenger ext destroyed");
+                }
+
                 if (instance != VK_NULL_HANDLE) {
                     vkDestroyInstance(instance, nullptr);
                     spdlog::debug("Vulkan instance destroyed");
