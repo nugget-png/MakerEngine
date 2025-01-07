@@ -8,6 +8,9 @@ else()
   target_compile_options(GamePlayer PRIVATE "-finput-charset=UTF-8")
 endif()
 
+# Make GamePlayer depend on MakerEngine
+add_dependencies(GamePlayer MakerEngine)
+
 # Link to the MakerEngine library
 target_link_libraries(GamePlayer PUBLIC ${CMAKE_BINARY_DIR}/MakerEngine/MakerEngine.lib)
 
