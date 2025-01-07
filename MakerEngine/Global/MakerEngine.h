@@ -4,6 +4,12 @@
 
 #include <string>
 #include <spdlog/spdlog.h>
+#include <vulkan/vulkan.h>
+
+// Engine details
+#define ENGINE_NAME "Maker Engine"
+#define ENGINE_VERSION VK_MAKE_VERSION(0, 1, 0)
+#define VULKAN_API_VERSION VK_MAKE_VERSION(1, 3, 296)
 
 #ifdef _WIN32
 	#define PLATFORM_WINDOWS
