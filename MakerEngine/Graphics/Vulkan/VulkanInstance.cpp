@@ -22,11 +22,27 @@ namespace MakerEngine {
                 createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
                 createInfo.pApplicationInfo = &appInfo;
 
-                // Retrieve and enable required GLFW extensions for Vulkan
+                // Setup extensions
+                std::vector<const char*> extensions;
+
+                // Retrieve required GLFW extensions for Vulkan
                 uint32_t glfwExtensionCount = 0;
                 const char** glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
-                createInfo.enabledExtensionCount = glfwExtensionCount;
-                createInfo.ppEnabledExtensionNames = glfwExtensions;
+
+                // Add GLFW extensions to the list of extensions
+                for (uint32_t i = 0; i < glfwExtensionCount; i++) {
+                    extensions.emplace_back(glfwExtensions[i]);
+                }
+
+                // On macOS we will need VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR and
+                // VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME
+                #ifdef PLATFORM_MACOS
+                    extensions.emplace_back(VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME);
+                    createInfo.flags |= VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR;
+                #endif      
+
+                createInfo.enabledExtensionCount = (uint32_t)extensions.size();
+                createInfo.ppEnabledExtensionNames = extensions.data();
 
                 // No validation layers enabled at this point
                 createInfo.enabledLayerCount = 0;
@@ -36,6 +52,15 @@ namespace MakerEngine {
                 if (result != VK_SUCCESS) {
                     spdlog::critical("Failed to create Vulkan instance!");
                     throw std::runtime_error("Failed to create Vulkan instance!");
+                }
+
+                // Enumerate all available Vulkan extensions
+                uint32_t extensionCount = 0;
+                std::vector<VkExtensionProperties> availableExtensions(extensionCount);
+                vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, availableExtensions.data());
+
+                for (const auto& extension : availableExtensions) {
+                    spdlog::debug("Available Vulkan extension: {}", extension.extensionName);
                 }
 
                 // Log Vulkan instance creation success and app info
