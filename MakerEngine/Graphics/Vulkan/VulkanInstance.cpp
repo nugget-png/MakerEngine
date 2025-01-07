@@ -13,9 +13,9 @@ namespace MakerEngine {
                 appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
                 appInfo.pApplicationName = appName.c_str();        // Name of the application
                 appInfo.applicationVersion = appVersion;           // Version of the application
-                appInfo.pEngineName = "Maker Engine";              // Engine name
-                appInfo.engineVersion = VK_MAKE_VERSION(0, 1, 0);  // Engine version
-                appInfo.apiVersion = VK_MAKE_VERSION(1, 3, 296);   // Vulkan API version
+                appInfo.pEngineName = ENGINE_NAME;                 // Engine name from MakerEngine header
+                appInfo.engineVersion = ENGINE_VERSION;            // Engine version from MakerEngine header
+                appInfo.apiVersion = VULKAN_API_VERSION;           // Vulkan API version from MakerEngine header
 
                 // Setup Vulkan instance creation info
                 VkInstanceCreateInfo createInfo{};
