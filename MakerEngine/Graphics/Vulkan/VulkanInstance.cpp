@@ -77,6 +77,8 @@ namespace MakerEngine {
 
                 // Enumerate all available Vulkan extensions
                 uint32_t extensionCount = 0;
+                vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
+
                 std::vector<VkExtensionProperties> availableExtensions(extensionCount);
                 vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, availableExtensions.data());
 
