@@ -86,6 +86,10 @@ namespace MakerEngine {
                 spdlog::debug("apiVersion: {}", appInfo.apiVersion);
             }
 
+            const VkInstance& VulkanInstance::getVkInstance() const {
+                return instance;
+            }
+
             bool VulkanInstance::checkValidationLayerSupport() {
                 uint32_t layerCount;
                 vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
