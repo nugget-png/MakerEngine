@@ -6,6 +6,7 @@
 #include <GLFW/glfw3.h>
 #include <string>
 #include <stdexcept>
+#include <cstring>
 
 namespace MakerEngine {
     namespace Graphics {
@@ -18,6 +19,9 @@ namespace MakerEngine {
                 void create(const std::string& appName, uint32_t appVersion);
 
             private:
+
+                bool checkValidationLayerSupport();
+
                 void destroy();
 
                 VkInstance instance;

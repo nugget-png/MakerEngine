@@ -44,8 +44,29 @@ namespace MakerEngine {
                 createInfo.enabledExtensionCount = (uint32_t)extensions.size();
                 createInfo.ppEnabledExtensionNames = extensions.data();
 
-                // No validation layers enabled at this point
-                createInfo.enabledLayerCount = 0;
+                // Validation layers
+                std::vector<const char*> validationLayers = {
+                    "VK_LAYER_KHRONOS_validation"
+                };
+
+                #ifdef MAKERENGINE_DEBUG
+                    const bool enableValidationLayers = true;
+                #else
+                    const bool enableValidationLayers = false;
+                #endif
+
+                if (enableValidationLayers && !checkValidationLayerSupport()) {
+                    spdlog::critical("Validation layers requested, but not available!");
+                    throw std::runtime_error("Validation layers requested, but not available!");
+                }
+
+                if (enableValidationLayers) {
+                    createInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
+                    createInfo.ppEnabledLayerNames = validationLayers.data();
+                }
+                else {
+                    createInfo.enabledLayerCount = 0;
+                }
 
                 // Create the Vulkan instance
                 VkResult result = vkCreateInstance(&createInfo, nullptr, &instance);
@@ -71,6 +92,22 @@ namespace MakerEngine {
                 spdlog::debug("pEngineName: {}", appInfo.pEngineName);
                 spdlog::debug("engineVersion: {}", appInfo.engineVersion);
                 spdlog::debug("apiVersion: {}", appInfo.apiVersion);
+            }
+
+            bool VulkanInstance::checkValidationLayerSupport() {
+                uint32_t layerCount;
+                vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
+
+                std::vector<VkLayerProperties> availableLayers(layerCount);
+                vkEnumerateInstanceLayerProperties(&layerCount, availableLayers.data());
+
+                for (const auto& layer : availableLayers) {
+                    if (strcmp(layer.layerName, "VK_LAYER_KHRONOS_validation") == 0) {
+                        return true;
+                    }
+                }
+
+                return false;
             }
 
             void VulkanInstance::destroy() {
