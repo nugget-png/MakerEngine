@@ -3,7 +3,7 @@
 namespace MakerEngine {
     namespace Graphics {
         namespace Vulkan {
-            VulkanInstance::VulkanInstance() : instance(VK_NULL_HANDLE) {
+            VulkanInstance::VulkanInstance() : instance(VK_NULL_HANDLE), enableValidationLayers(false) {
 
             }
 
@@ -22,25 +22,14 @@ namespace MakerEngine {
                 createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
                 createInfo.pApplicationInfo = &appInfo;
 
-                // Setup extensions
-                std::vector<const char*> extensions;
+                #ifdef MAKERENGINE_DEBUG
+                    enableValidationLayers = true;
+                #else
+                    enableValidationLayers = false;
+                #endif
 
-                // Retrieve required GLFW extensions for Vulkan
-                uint32_t glfwExtensionCount = 0;
-                const char** glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
-
-                // Add GLFW extensions to the list of extensions
-                for (uint32_t i = 0; i < glfwExtensionCount; i++) {
-                    extensions.emplace_back(glfwExtensions[i]);
-                }
-
-                // On macOS we will need VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR and
-                // VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME
-                #ifdef PLATFORM_MACOS
-                    extensions.emplace_back(VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME);
-                    createInfo.flags |= VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR;
-                #endif      
-
+                // Get required extensions for this instance
+                auto extensions = getRequiredExtensions();
                 createInfo.enabledExtensionCount = (uint32_t)extensions.size();
                 createInfo.ppEnabledExtensionNames = extensions.data();
 
@@ -48,12 +37,6 @@ namespace MakerEngine {
                 std::vector<const char*> validationLayers = {
                     "VK_LAYER_KHRONOS_validation"
                 };
-
-                #ifdef MAKERENGINE_DEBUG
-                    const bool enableValidationLayers = true;
-                #else
-                    const bool enableValidationLayers = false;
-                #endif
 
                 if (enableValidationLayers && !checkValidationLayerSupport()) {
                     spdlog::critical("Validation layers requested, but not available!");
@@ -110,6 +93,31 @@ namespace MakerEngine {
                 }
 
                 return false;
+            }
+
+            std::vector<const char*> VulkanInstance::getRequiredExtensions() {
+                std::vector<const char*> extensions;
+
+                // Retrieve required GLFW extensions for Vulkan
+                uint32_t glfwExtensionCount = 0;
+                const char** glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
+
+                // Add GLFW extensions to the list of extensions
+                for (uint32_t i = 0; i < glfwExtensionCount; i++) {
+                    extensions.emplace_back(glfwExtensions[i]);
+                }
+
+                // On macOS we will need VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR and
+                // VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME
+                #ifdef PLATFORM_MACOS
+                    extensions.emplace_back(VK_KHR_PORTABILITY_ENUMERATION_EXTENSION_NAME);
+                    createInfo.flags |= VK_INSTANCE_CREATE_ENUMERATE_PORTABILITY_BIT_KHR;
+                #endif      
+
+                // Add debug utils extension if we are using validation layers
+                if (enableValidationLayers) {
+                    extensions.emplace_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
+                }
             }
 
             void VulkanInstance::destroy() {

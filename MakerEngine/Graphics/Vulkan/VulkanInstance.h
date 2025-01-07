@@ -22,8 +22,11 @@ namespace MakerEngine {
 
                 bool checkValidationLayerSupport();
 
+                std::vector<const char*> getRequiredExtensions();
+
                 void destroy();
 
+                bool enableValidationLayers;
                 VkInstance instance;
             };
         }
