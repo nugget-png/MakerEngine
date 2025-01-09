@@ -1,7 +1,7 @@
 
 # Add source to this library
 add_library(MakerEngine SHARED
-"EngineMain.cpp" "Global/MakerEngine.h" "Global/MakerEngine.cpp" "Libraries/spdlog/async.cpp" "Libraries/spdlog/bundled_fmtlib_format.cpp" "Libraries/spdlog/cfg.cpp" "Libraries/spdlog/color_sinks.cpp" "Libraries/spdlog/file_sinks.cpp" "Libraries/spdlog/stdout_sinks.cpp" "Libraries/spdlog/spdlog.cpp" "Application/Window.h" "Application/Window.cpp" "Graphics/Vulkan/Bootstrap/VulkanInstance.h" "Graphics/Vulkan/Bootstrap/VulkanInstance.cpp"    "Graphics/Vulkan/Bootstrap/PhysicalDevice.h" "Graphics/Vulkan/Bootstrap/PhysicalDevice.h" "Graphics/Vulkan/Bootstrap/PhysicalDevice.cpp" "Graphics/Vulkan/Bootstrap/QueueFamilyIndices.h")
+"EngineMain.cpp" "Global/MakerEngine.h" "Global/MakerEngine.cpp" "Libraries/spdlog/async.cpp" "Libraries/spdlog/bundled_fmtlib_format.cpp" "Libraries/spdlog/cfg.cpp" "Libraries/spdlog/color_sinks.cpp" "Libraries/spdlog/file_sinks.cpp" "Libraries/spdlog/stdout_sinks.cpp" "Libraries/spdlog/spdlog.cpp" "Application/Window.h" "Application/Window.cpp" "Graphics/Vulkan/Bootstrap/VulkanInstance.h" "Graphics/Vulkan/Bootstrap/VulkanInstance.cpp"    "Graphics/Vulkan/Bootstrap/PhysicalDevice.h" "Graphics/Vulkan/Bootstrap/PhysicalDevice.h" "Graphics/Vulkan/Bootstrap/PhysicalDevice.cpp" "Graphics/Vulkan/Bootstrap/QueueFamilyIndices.h" "Graphics/Vulkan/Bootstrap/QueueFamilyIndices.cpp")
 
 # Define MAKERENGINE_EXPORTS to export symbols
 target_compile_definitions(MakerEngine PRIVATE MAKERENGINE_EXPORTS)
