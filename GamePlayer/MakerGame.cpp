@@ -1,14 +1,15 @@
 #include <iostream>
 #include <MakerEngine.h>
 #include <Application/Window.h>
-#include <Graphics/Vulkan/VulkanInstance.h>
+#include <Graphics/Vulkan/Bootstrap/VulkanInstance.h>
 
 using namespace MakerEngine;
+using namespace MakerEngine::Graphics;
 
 int main() {
     Engine engine;
     Application::Window window;
-    Graphics::Vulkan::VulkanInstance vulkanInstance;
+    Vulkan::Bootstrap::VulkanInstance vulkanInstance;
 
     engine.initialize();
     vulkanInstance.create("Game Player", VK_MAKE_VERSION(1, 0, 0));
