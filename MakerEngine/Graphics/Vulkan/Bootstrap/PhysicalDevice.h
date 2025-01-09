@@ -31,7 +31,6 @@ namespace MakerEngine {
                     VkPhysicalDeviceMemoryProperties getDeviceMemoryProperties(VkPhysicalDevice physicalDevice) const;
 
                     int rateDeviceSuitability(VkPhysicalDevice physicalDevice) const;
-                    QueueFamilyIndices findQueueFamilies(VkPhysicalDevice physicalDevice) const;
 
                     VkPhysicalDevice physicalDevice;
                 };

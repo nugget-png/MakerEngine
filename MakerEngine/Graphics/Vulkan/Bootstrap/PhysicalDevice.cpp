@@ -146,26 +146,6 @@ namespace MakerEngine {
                     return physicalDevice;
                 }
 
-                QueueFamilyIndices PhysicalDevice::findQueueFamilies(VkPhysicalDevice physicalDevice) const {
-                    QueueFamilyIndices indices;
-                    uint32_t queueFamilyCount;
-
-                    vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyCount, nullptr);
-                    std::vector<VkQueueFamilyProperties> queueFamilies(queueFamilyCount);
-                    vkGetPhysicalDeviceQueueFamilyProperties(physicalDevice, &queueFamilyCount, queueFamilies.data());
-
-                    int i = 0;
-                    for (const auto& queueFamily : queueFamilies) {
-                        if (queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT) {
-                            indices.graphicsFamily = i;
-                        }
-
-                        i++;
-                    }
-
-                    return indices;
-                }
-
                 PhysicalDevice::~PhysicalDevice() {
                     // Empty destructor
                 }
