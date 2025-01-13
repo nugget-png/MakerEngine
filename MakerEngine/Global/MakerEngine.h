@@ -5,6 +5,7 @@
 #include <string>
 #include <spdlog/spdlog.h>
 #include <vulkan/vulkan.h>
+#include <GLFW/glfw3.h>
 
 // Engine details
 #define ENGINE_NAME "Maker Engine"

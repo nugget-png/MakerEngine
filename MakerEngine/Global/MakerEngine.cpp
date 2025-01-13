@@ -29,6 +29,11 @@ namespace MakerEngine {
 	void Engine::initialize() {
 		spdlog::info("MakerEngine initializing");
 		spdlog::info("Running on {} platform", currentPlatform());
+
+        if (!glfwInit()) {
+            spdlog::critical("Failed to initialize GLFW!");
+            exit(EXIT_FAILURE);
+        }
 	}
 
 	void Engine::shutdown() {

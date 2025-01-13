@@ -11,10 +11,7 @@ namespace MakerEngine {
 			this->height = height;
 			this->name = name;
 
-			if (!glfwInit()) {
-				spdlog::critical("Failed to initialize GLFW!");
-				exit(EXIT_FAILURE);
-			}
+            // GLFW is already initialized in the Engine class, no need to initialize it here
 
 			// Since we are using Vulkan, disable OpenGL context creation
 			glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
