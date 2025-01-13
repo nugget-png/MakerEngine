@@ -54,6 +54,19 @@ namespace MakerEngine {
                         createInfo.enabledLayerCount = 0;
                     }
 
+                    if (enableValidationLayers) {
+                        spdlog::debug("Validation layers enabled: Yes");
+                    }
+                    else {
+                        spdlog::debug("Validation layers enabled: No");
+                    }
+
+                    spdlog::debug("Validation layers count: {}", createInfo.enabledLayerCount);
+                    spdlog::debug("Enabled extension names: ");
+                    for (uint32_t i = 0; i < createInfo.enabledExtensionCount; ++i) {
+                        spdlog::debug(" {}", createInfo.ppEnabledExtensionNames[i]);
+                    }
+
                     // Create the Vulkan instance
                     VkResult result = vkCreateInstance(&createInfo, nullptr, &instance);
                     if (result != VK_SUCCESS) {
