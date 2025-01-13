@@ -40,6 +40,11 @@ namespace MakerEngine {
                     createInfo.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
                     createInfo.ppEnabledExtensionNames = extensions.data();
 
+                    spdlog::debug("Enabled extension names for logical device: ");
+                    for (uint32_t i = 0; i < createInfo.enabledExtensionCount; ++i) {
+                        spdlog::debug(" {}", createInfo.ppEnabledExtensionNames[i]);
+                    }
+
                     // Create the logical device
                     VkResult result = vkCreateDevice(physicalDevice.getHandle(), &createInfo, nullptr, &device);
                     if (result != VK_SUCCESS) {
