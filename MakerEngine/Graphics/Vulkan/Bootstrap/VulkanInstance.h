@@ -19,7 +19,7 @@ namespace MakerEngine {
 
                     void create(const std::string& appName, uint32_t appVersion);
 
-                    const VkInstance& getVkInstance() const;
+                    const VkInstance& getHandle() const;
 
                 private:
                     bool checkValidationLayerSupport();

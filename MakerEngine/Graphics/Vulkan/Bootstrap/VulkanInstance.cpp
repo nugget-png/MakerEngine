@@ -100,7 +100,7 @@ namespace MakerEngine {
                     spdlog::debug("apiVersion: {}", appInfo.apiVersion);
                 }
 
-                const VkInstance& VulkanInstance::getVkInstance() const {
+                const VkInstance& VulkanInstance::getHandle() const {
                     return instance;
                 }
 
