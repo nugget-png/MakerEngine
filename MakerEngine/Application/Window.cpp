@@ -28,7 +28,6 @@ namespace MakerEngine {
 		}
 
 		void Window::destroy() {
-			// Make sure the window is not nullptr before destroying it
 			if (window) {
 				glfwDestroyWindow(window);
 				window = nullptr;
@@ -37,7 +36,6 @@ namespace MakerEngine {
 
 		void Window::runLoop() {
 			spdlog::info("Main loop started");
-			// Ensure the engine continues to run until the window is closed or something else happens
 			while (!glfwWindowShouldClose(window)) {
 				glfwPollEvents();
 			}
