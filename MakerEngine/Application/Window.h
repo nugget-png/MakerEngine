@@ -17,7 +17,7 @@ namespace MakerEngine {
 
 			void runLoop();
 
-			GLFWwindow* getWindow() const;
+			GLFWwindow* getHandle() const;
 
 			int getWidth() const;
 			int getHeight() const;

@@ -41,7 +41,7 @@ namespace MakerEngine {
 			}
 		}
 
-		GLFWwindow* Window::getWindow() const {
+		GLFWwindow* Window::getHandle() const {
 			return window;
 		}
 

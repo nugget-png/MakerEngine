@@ -12,7 +12,7 @@ namespace MakerEngine {
 
                 void WindowSurface::create(const VulkanInstance& instance, const Application::Window& window) {
                     VkResult result =
-                        glfwCreateWindowSurface(instance.getVkInstance(), window.getWindow(), nullptr, &surface);
+                        glfwCreateWindowSurface(instance.getVkInstance(), window.getHandle(), nullptr, &surface);
 
                     if (result != VK_SUCCESS) {
                         spdlog::critical("Failed to create window surface!");
