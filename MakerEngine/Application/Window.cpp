@@ -62,7 +62,6 @@ namespace MakerEngine {
 
 		Window::~Window() {
 			destroy();
-			glfwTerminate();
 		}
 	}
 }

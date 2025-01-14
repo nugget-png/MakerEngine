@@ -38,5 +38,6 @@ namespace MakerEngine {
 
 	void Engine::shutdown() {
 		spdlog::info("MakerEngine shutting down");
+        glfwTerminate();
 	}
 }
