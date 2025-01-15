@@ -5,22 +5,37 @@ namespace MakerEngine {
         namespace Vulkan {
             namespace Bootstrap {
                 LogicalDevice::LogicalDevice()
-                    : device(VK_NULL_HANDLE), graphicsQueue(VK_NULL_HANDLE)
+                    : device(VK_NULL_HANDLE), graphicsQueue(VK_NULL_HANDLE), presentQueue(VK_NULL_HANDLE)
                 {
 
                 }
 
-                void LogicalDevice::create(PhysicalDevice& physicalDevice) {
+                void LogicalDevice::create(PhysicalDevice& physicalDevice, const std::optional<WindowSurface>& windowSurface) {
                     // Specify the queues to be created
-                    QueueFamilyIndices indices = findQueueFamilies(physicalDevice.getHandle(), std::nullopt);
+                    QueueFamilyIndices indices = findQueueFamilies(physicalDevice.getHandle(), windowSurface);
 
-                    VkDeviceQueueCreateInfo queueCreateInfo{};
-                    queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
-                    queueCreateInfo.queueFamilyIndex = indices.graphicsFamily.value();
-                    queueCreateInfo.queueCount = 1;
+                    // Create a vector to hold all of the queue create infos
+                    std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
+
+                    // Create the graphics queue
+                    VkDeviceQueueCreateInfo queueCreateInfoGraphics{};
+                    queueCreateInfoGraphics.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+                    queueCreateInfoGraphics.queueFamilyIndex = indices.graphicsFamily.value();
+                    queueCreateInfoGraphics.queueCount = 1;
 
                     float queuePriority = 1.0f;
-                    queueCreateInfo.pQueuePriorities = &queuePriority;
+                    queueCreateInfoGraphics.pQueuePriorities = &queuePriority;
+                    queueCreateInfos.emplace_back(queueCreateInfoGraphics);
+
+                    // Create the presentation queue
+                    VkDeviceQueueCreateInfo queueCreateInfoPresentation{};
+                    queueCreateInfoGraphics.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+                    queueCreateInfoGraphics.queueFamilyIndex = indices.presentFamily.value();
+                    queueCreateInfoGraphics.queueCount = 1;
+
+                    float queuePriority = 1.0f;
+                    queueCreateInfoGraphics.pQueuePriorities = &queuePriority;
+                    queueCreateInfos.emplace_back(queueCreateInfoPresentation);
 
                     // Specify the device features to be enabled
                     VkPhysicalDeviceFeatures deviceFeatures{};
@@ -28,8 +43,8 @@ namespace MakerEngine {
                     // Fill in the main device create info structure
                     VkDeviceCreateInfo createInfo{};
                     createInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
-                    createInfo.pQueueCreateInfos = &queueCreateInfo;
-                    createInfo.queueCreateInfoCount = 1;
+                    createInfo.pQueueCreateInfos = queueCreateInfos.data();
+                    createInfo.queueCreateInfoCount = static_cast<uint32_t>(queueCreateInfos.size());
                     createInfo.pEnabledFeatures = &deviceFeatures;
 
                     // Specify device extensions to use
@@ -56,6 +71,7 @@ namespace MakerEngine {
 
                     // Get the device queues
                     vkGetDeviceQueue(device, indices.graphicsFamily.value(), 0, &graphicsQueue);
+                    vkGetDeviceQueue(device, indices.presentFamily.value(), 0, &presentQueue);
                 }
 
                 const VkDevice& LogicalDevice::getHandle() const {
@@ -64,6 +80,10 @@ namespace MakerEngine {
 
                 const VkQueue& LogicalDevice::getGraphicsQueue() const {
                     return graphicsQueue;
+                }
+
+                const VkQueue& LogicalDevice::getPresentationQueue() const {
+                    return presentQueue;
                 }
 
                 LogicalDevice::~LogicalDevice() {

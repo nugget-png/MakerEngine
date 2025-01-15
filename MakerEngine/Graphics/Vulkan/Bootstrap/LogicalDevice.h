@@ -3,8 +3,10 @@
 #include <vulkan/vulkan.h>
 #include <vector>
 #include <stdexcept>
+#include <set>
 #include "QueueFamilyIndices.h"
 #include "PhysicalDevice.h"
+#include "WindowSurface.h"
 #include "MakerEngine.h"
 
 namespace MakerEngine {
@@ -16,17 +18,18 @@ namespace MakerEngine {
                     LogicalDevice();
                     ~LogicalDevice();
 
-                    void create(PhysicalDevice& physicalDevice);
+                    void create(PhysicalDevice& physicalDevice, const std::optional<WindowSurface>& windowSurface);
 
                     const VkDevice& getHandle() const;
 
                     const VkQueue& getGraphicsQueue() const;
-
+                    const VkQueue& getPresentationQueue() const;
 
 
                 private:
                     VkDevice device;
                     VkQueue graphicsQueue;
+                    VkQueue presentQueue;
                 };
             }
         }
