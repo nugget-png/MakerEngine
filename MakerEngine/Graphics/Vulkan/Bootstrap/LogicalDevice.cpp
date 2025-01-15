@@ -10,7 +10,7 @@ namespace MakerEngine {
 
                 }
 
-                void LogicalDevice::create(PhysicalDevice& physicalDevice, const std::optional<WindowSurface>& windowSurface) {
+                void LogicalDevice::create(const PhysicalDevice& physicalDevice, const std::optional<WindowSurface>& windowSurface) {
                     // Specify the queues to be created
                     QueueFamilyIndices indices = findQueueFamilies(physicalDevice.getHandle(), windowSurface);
 

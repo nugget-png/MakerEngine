@@ -10,7 +10,7 @@ namespace MakerEngine {
                     // Empty constructor
                 }
 
-                std::vector<VkPhysicalDevice> PhysicalDevice::enumeratePhysicalDevices(VulkanInstance& instance) {
+                std::vector<VkPhysicalDevice> PhysicalDevice::enumeratePhysicalDevices(const VulkanInstance& instance) {
                     uint32_t deviceCount = 0;
 
                     vkEnumeratePhysicalDevices(instance.getHandle(), &deviceCount, nullptr);
@@ -29,7 +29,7 @@ namespace MakerEngine {
                     return devices;
                 }
 
-                void PhysicalDevice::pickBestDevice(VulkanInstance& instance) {
+                void PhysicalDevice::pickBestDevice(const VulkanInstance& instance) {
                     std::unordered_map<VkPhysicalDevice, int> candidates;
 
                     std::vector<VkPhysicalDevice> devices = enumeratePhysicalDevices(instance);

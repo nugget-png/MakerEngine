@@ -17,7 +17,7 @@ namespace MakerEngine {
                     VulkanInstance();
                     ~VulkanInstance();
 
-                    void create(const std::string& appName, uint32_t appVersion);
+                    void create(const std::string& appName, const uint32_t appVersion);
 
                     const VkInstance& getHandle() const;
 
@@ -34,14 +34,14 @@ namespace MakerEngine {
                     );
 
                     VkResult CreateDebugUtilsMessengerEXT(
-                        VkInstance instance,
+                        const VkInstance instance,
                         const VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo,
                         const VkAllocationCallbacks* pAllocator,
                         VkDebugUtilsMessengerEXT* pDebugMessenger
                     );
 
                     void DestroyDebugUtilsMessengerEXT(
-                        VkInstance instance,
+                        const VkInstance instance,
                         VkDebugUtilsMessengerEXT debugMessenger,
                         const VkAllocationCallbacks* pAllocator
                     );

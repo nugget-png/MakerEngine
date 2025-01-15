@@ -10,7 +10,7 @@ namespace MakerEngine {
 
                 }
 
-                void VulkanInstance::create(const std::string& appName, uint32_t appVersion) {
+                void VulkanInstance::create(const std::string& appName, const uint32_t appVersion) {
                     // Specify application info for Vulkan instance creation
                     VkApplicationInfo appInfo{};
                     appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
@@ -172,7 +172,7 @@ namespace MakerEngine {
                 }
 
                 VkResult VulkanInstance::CreateDebugUtilsMessengerEXT(
-                    VkInstance instance,
+                    const VkInstance instance,
                     const VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo,
                     const VkAllocationCallbacks* pAllocator,
                     VkDebugUtilsMessengerEXT* pDebugMessenger
@@ -194,7 +194,7 @@ namespace MakerEngine {
 
 
                 void VulkanInstance::DestroyDebugUtilsMessengerEXT(
-                    VkInstance instance,
+                    const VkInstance instance,
                     VkDebugUtilsMessengerEXT debugMessenger,
                     const VkAllocationCallbacks* pAllocator
                 )

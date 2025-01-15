@@ -18,7 +18,7 @@ namespace MakerEngine {
                     LogicalDevice();
                     ~LogicalDevice();
 
-                    void create(PhysicalDevice& physicalDevice, const std::optional<WindowSurface>& windowSurface);
+                    void create(const PhysicalDevice& physicalDevice, const std::optional<WindowSurface>& windowSurface);
 
                     const VkDevice& getHandle() const;
 
