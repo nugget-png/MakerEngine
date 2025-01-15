@@ -18,24 +18,10 @@ namespace MakerEngine {
                     std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
 
                     // Create the graphics queue
-                    VkDeviceQueueCreateInfo queueCreateInfoGraphics{};
-                    queueCreateInfoGraphics.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
-                    queueCreateInfoGraphics.queueFamilyIndex = indices.graphicsFamily.value();
-                    queueCreateInfoGraphics.queueCount = 1;
-
-                    float queuePriority = 1.0f;
-                    queueCreateInfoGraphics.pQueuePriorities = &queuePriority;
-                    queueCreateInfos.emplace_back(queueCreateInfoGraphics);
+                    queueCreateInfos.emplace_back(createQueue(indices.graphicsFamily.value(), 1, 1.0f));
 
                     // Create the presentation queue
-                    VkDeviceQueueCreateInfo queueCreateInfoPresentation{};
-                    queueCreateInfoPresentation.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
-                    queueCreateInfoPresentation.queueFamilyIndex = indices.presentFamily.value();
-                    queueCreateInfoPresentation.queueCount = 1;
-
-                    float queuePriority = 1.0f;
-                    queueCreateInfoPresentation.pQueuePriorities = &queuePriority;
-                    queueCreateInfos.emplace_back(queueCreateInfoPresentation);
+                    queueCreateInfos.emplace_back(createQueue(indices.presentFamily.value(), 1, 1.0f));
 
                     // Specify the device features to be enabled
                     VkPhysicalDeviceFeatures deviceFeatures{};
@@ -84,6 +70,21 @@ namespace MakerEngine {
 
                 const VkQueue& LogicalDevice::getPresentationQueue() const {
                     return presentQueue;
+                }
+
+                const VkDeviceQueueCreateInfo LogicalDevice::createQueue(
+                    const uint32_t queueFamilyIndex,
+                    const uint32_t queueCount,
+                    float queuePriority
+                ) const
+
+                {
+                    VkDeviceQueueCreateInfo queueCreateInfo{};
+                    queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+                    queueCreateInfo.queueFamilyIndex = queueFamilyIndex;
+                    queueCreateInfo.queueCount = queueCount;
+                    queueCreateInfo.pQueuePriorities = &queuePriority;
+                    return queueCreateInfo;
                 }
 
                 LogicalDevice::~LogicalDevice() {
