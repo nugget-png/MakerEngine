@@ -29,12 +29,12 @@ namespace MakerEngine {
 
                     // Create the presentation queue
                     VkDeviceQueueCreateInfo queueCreateInfoPresentation{};
-                    queueCreateInfoGraphics.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
-                    queueCreateInfoGraphics.queueFamilyIndex = indices.presentFamily.value();
-                    queueCreateInfoGraphics.queueCount = 1;
+                    queueCreateInfoPresentation.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+                    queueCreateInfoPresentation.queueFamilyIndex = indices.presentFamily.value();
+                    queueCreateInfoPresentation.queueCount = 1;
 
                     float queuePriority = 1.0f;
-                    queueCreateInfoGraphics.pQueuePriorities = &queuePriority;
+                    queueCreateInfoPresentation.pQueuePriorities = &queuePriority;
                     queueCreateInfos.emplace_back(queueCreateInfoPresentation);
 
                     // Specify the device features to be enabled
