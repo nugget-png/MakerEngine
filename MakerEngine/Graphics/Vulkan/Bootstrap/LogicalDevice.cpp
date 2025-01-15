@@ -17,11 +17,8 @@ namespace MakerEngine {
                     // Create a vector to hold all of the queue create infos
                     std::vector<VkDeviceQueueCreateInfo> queueCreateInfos;
 
-                    // Create the graphics queue
-                    queueCreateInfos.emplace_back(createQueue(indices.graphicsFamily.value(), 1, 1.0f));
-
-                    // Create the presentation queue
-                    queueCreateInfos.emplace_back(createQueue(indices.presentFamily.value(), 1, 1.0f));
+                    // // Add graphics queue with priority 1.0f
+                    queueCreateInfos.emplace_back(createQueue(indices.graphicsFamily.value(), 2, 1.0f));
 
                     // Specify the device features to be enabled
                     VkPhysicalDeviceFeatures deviceFeatures{};
