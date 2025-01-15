@@ -19,10 +19,10 @@ int main() {
     engine.initialize();
     vulkanInstance.create("Game Player", VK_MAKE_VERSION(1, 0, 0));
     physicalDevice.pickBestDevice(vulkanInstance);
-    logicalDevice.create(physicalDevice, windowSurface);
 
     window.create(1280, 720, "Game Player");
     windowSurface.create(vulkanInstance, window);
+    logicalDevice.create(physicalDevice, windowSurface);
     window.runLoop();
 
     windowSurface.destroy(vulkanInstance);
