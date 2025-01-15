@@ -21,6 +21,10 @@ namespace MakerEngine {
 
                 }
 
+                const VkSurfaceKHR WindowSurface::getHandle() const {
+                    return surface;
+                }
+
                 void WindowSurface::destroy(const VulkanInstance& instance) {
                     vkDestroySurfaceKHR(instance.getHandle(), surface, nullptr);
                 }

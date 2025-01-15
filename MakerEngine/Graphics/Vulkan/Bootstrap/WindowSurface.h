@@ -18,6 +18,8 @@ namespace MakerEngine {
                     void create(const VulkanInstance& instance, const Application::Window& window);
                     void destroy(const VulkanInstance& instance);
 
+                    const VkSurfaceKHR getHandle() const;
+
                 private:
                     VkSurfaceKHR surface;
                 };

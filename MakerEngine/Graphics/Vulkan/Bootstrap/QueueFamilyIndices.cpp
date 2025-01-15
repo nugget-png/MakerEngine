@@ -20,7 +20,7 @@ namespace MakerEngine {
 
                             if (surface.has_value()) {
                                 VkBool32 presentSupport = false;
-                                vkGetPhysicalDeviceSurfaceSupportKHR(physicalDevice, i, nullptr, &presentSupport);
+                                vkGetPhysicalDeviceSurfaceSupportKHR(physicalDevice, i, surface.value().getHandle(), &presentSupport);
 
                                 if (presentSupport) {
                                     indices.presentFamily = i;
