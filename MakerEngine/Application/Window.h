@@ -1,3 +1,5 @@
+#pragma once
+
 #include "MakerEngine.h"
 
 #include <spdlog/spdlog.h>
@@ -6,31 +8,31 @@
 #include <string>
 
 namespace MakerEngine {
-	namespace Application {
-		class MAKERENGINE_API Window {
-		public:
-			Window();
-			~Window();
+    namespace Application {
+        class MAKERENGINE_API Window {
+        public:
+            Window();
+            ~Window();
 
-			void create(int width, int height, const std::string& name);
-			void destroy();
+            void create(int width, int height, const std::string& name);
+            void destroy();
 
-			void runLoop();
+            void runLoop();
 
-			GLFWwindow* getHandle() const;
+            GLFWwindow* getHandle() const;
 
-			int getWidth() const;
-			int getHeight() const;
+            int getWidth() const;
+            int getHeight() const;
 
-			const std::string& getName() const;
+            const std::string& getName() const;
 
-		private:
-			GLFWwindow* window;
+        private:
+            GLFWwindow* window;
 
-			int width;
-			int height;
+            int width;
+            int height;
 
-			std::string name;
-		};
-	}
+            std::string name;
+        };
+    }
 }
