@@ -12,7 +12,7 @@ namespace MakerEngine {
 
                 void LogicalDevice::create(PhysicalDevice& physicalDevice) {
                     // Specify the queues to be created
-                    QueueFamilyIndices indices = findQueueFamilies(physicalDevice.getHandle());
+                    QueueFamilyIndices indices = findQueueFamilies(physicalDevice.getHandle(), std::nullopt);
 
                     VkDeviceQueueCreateInfo queueCreateInfo{};
                     queueCreateInfo.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;

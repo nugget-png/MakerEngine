@@ -1,6 +1,8 @@
 #pragma once
 
 #include "MakerEngine.h"
+#include "WindowSurface.h"
+
 
 #include <optional>
 
@@ -10,14 +12,14 @@ namespace MakerEngine {
             namespace Bootstrap {
                 struct QueueFamilyIndices {
                     std::optional<uint32_t> graphicsFamily;
-                    // Add more necessary queue family indices here
+                    std::optional<uint32_t> presentFamily;
 
                     bool isComplete() {
-                        return graphicsFamily.has_value();
+                        return graphicsFamily.has_value() && presentFamily.has_value();
                     }
                 };
 
-                MAKERENGINE_API QueueFamilyIndices findQueueFamilies(VkPhysicalDevice physicalDevice);
+                MAKERENGINE_API QueueFamilyIndices findQueueFamilies(const VkPhysicalDevice& physicalDevice, const std::optional<WindowSurface>& surface);
             }
         }
     }

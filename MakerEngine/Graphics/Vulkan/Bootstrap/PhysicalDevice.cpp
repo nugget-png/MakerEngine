@@ -91,7 +91,7 @@ namespace MakerEngine {
 
 
                     // Ensure the device has the available queue families
-                    QueueFamilyIndices indices = findQueueFamilies(physicalDevice);
+                    QueueFamilyIndices indices = findQueueFamilies(physicalDevice, std::nullopt);
                     if (!indices.graphicsFamily.has_value()) {
                         return 0;
                     }
