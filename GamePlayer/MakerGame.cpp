@@ -14,15 +14,18 @@ int main() {
     Vulkan::Bootstrap::VulkanInstance vulkanInstance;
     Vulkan::Bootstrap::PhysicalDevice physicalDevice;
     Vulkan::Bootstrap::LogicalDevice logicalDevice;
+    Vulkan::Bootstrap::WindowSurface windowSurface;
 
     engine.initialize();
     vulkanInstance.create("Game Player", VK_MAKE_VERSION(1, 0, 0));
     physicalDevice.pickBestDevice(vulkanInstance);
-    logicalDevice.create(physicalDevice);
- 
+    logicalDevice.create(physicalDevice, windowSurface);
+
     window.create(1280, 720, "Game Player");
+    windowSurface.create(vulkanInstance, window);
     window.runLoop();
 
+    windowSurface.destroy(vulkanInstance);
     window.destroy();
     engine.shutdown();
 
