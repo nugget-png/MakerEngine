@@ -26,11 +26,11 @@ namespace MakerEngine {
                 private:
                     std::vector<VkPhysicalDevice> enumeratePhysicalDevices(const VulkanInstance& instance);
 
-                    VkPhysicalDeviceProperties getDeviceProperties(const VkPhysicalDevice physicalDevice) const;
-                    VkPhysicalDeviceFeatures getDeviceFeatures(const VkPhysicalDevice physicalDevice) const;
-                    VkPhysicalDeviceMemoryProperties getDeviceMemoryProperties(const VkPhysicalDevice physicalDevice) const;
+                    VkPhysicalDeviceProperties getDeviceProperties(const VkPhysicalDevice& physicalDevice) const;
+                    VkPhysicalDeviceFeatures getDeviceFeatures(const VkPhysicalDevice& physicalDevice) const;
+                    VkPhysicalDeviceMemoryProperties getDeviceMemoryProperties(const VkPhysicalDevice& physicalDevice) const;
 
-                    int rateDeviceSuitability(const VkPhysicalDevice physicalDevice) const;
+                    int rateDeviceSuitability(const VkPhysicalDevice& physicalDevice) const;
 
                     VkPhysicalDevice physicalDevice;
                 };

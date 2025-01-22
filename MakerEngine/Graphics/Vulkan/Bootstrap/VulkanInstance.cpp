@@ -172,7 +172,7 @@ namespace MakerEngine {
                 }
 
                 VkResult VulkanInstance::CreateDebugUtilsMessengerEXT(
-                    const VkInstance instance,
+                    const VkInstance& instance,
                     const VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo,
                     const VkAllocationCallbacks* pAllocator,
                     VkDebugUtilsMessengerEXT* pDebugMessenger
@@ -194,7 +194,7 @@ namespace MakerEngine {
 
 
                 void VulkanInstance::DestroyDebugUtilsMessengerEXT(
-                    const VkInstance instance,
+                    const VkInstance& instance,
                     VkDebugUtilsMessengerEXT debugMessenger,
                     const VkAllocationCallbacks* pAllocator
                 )

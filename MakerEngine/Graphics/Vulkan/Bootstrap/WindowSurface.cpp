@@ -21,7 +21,7 @@ namespace MakerEngine {
 
                 }
 
-                const VkSurfaceKHR WindowSurface::getHandle() const {
+                const VkSurfaceKHR& WindowSurface::getHandle() const {
                     return surface;
                 }
 

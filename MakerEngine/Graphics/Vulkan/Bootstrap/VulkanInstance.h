@@ -34,14 +34,14 @@ namespace MakerEngine {
                     );
 
                     VkResult CreateDebugUtilsMessengerEXT(
-                        const VkInstance instance,
+                        const VkInstance& instance,
                         const VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo,
                         const VkAllocationCallbacks* pAllocator,
                         VkDebugUtilsMessengerEXT* pDebugMessenger
                     );
 
                     void DestroyDebugUtilsMessengerEXT(
-                        const VkInstance instance,
+                        const VkInstance& instance,
                         VkDebugUtilsMessengerEXT debugMessenger,
                         const VkAllocationCallbacks* pAllocator
                     );
