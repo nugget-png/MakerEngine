@@ -13,7 +13,11 @@ namespace MakerEngine {
                 std::vector<VkPhysicalDevice> PhysicalDevice::enumeratePhysicalDevices(const VulkanInstance& instance) {
                     uint32_t deviceCount = 0;
 
-                    vkEnumeratePhysicalDevices(instance.getHandle(), &deviceCount, nullptr);
+                    VkResult resultFirst = vkEnumeratePhysicalDevices(instance.getHandle(), &deviceCount, nullptr);
+                    if (resultFirst != VK_SUCCESS) {
+                        spdlog::critical("Failed to enumerate physical devices!");
+                        throw std::runtime_error("Failed to enumerate physical devices!");
+                    }
 
                     // If no devices are found, no point in going further
                     if (deviceCount == 0) {
@@ -22,7 +26,13 @@ namespace MakerEngine {
                     }
 
                     std::vector<VkPhysicalDevice> devices(deviceCount);
-                    vkEnumeratePhysicalDevices(instance.getHandle(), &deviceCount, devices.data());
+
+                    VkResult resultSecond = vkEnumeratePhysicalDevices(instance.getHandle(), &deviceCount, devices.data());
+                    if (resultSecond != VK_SUCCESS) {
+                        spdlog::critical("Failed to enumerate physical devices!");
+                        throw std::runtime_error("Failed to enumerate physical devices!");
+                    }
+
                     spdlog::debug("Found {} Vulkan-compatible devices.", deviceCount);
 
                     // Return all available devices

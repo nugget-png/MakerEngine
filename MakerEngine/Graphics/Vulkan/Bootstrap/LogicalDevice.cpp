@@ -95,10 +95,24 @@ namespace MakerEngine {
 
                 bool LogicalDevice::isExtensionSupported(const VkPhysicalDevice& physicalDevice, const char* extensionName) const {
                     uint32_t extensionCount;
-                    vkEnumerateDeviceExtensionProperties(physicalDevice, nullptr, &extensionCount, nullptr);
+
+                    VkResult resultFirst =
+                        vkEnumerateDeviceExtensionProperties(physicalDevice, nullptr, &extensionCount, nullptr);
+
+                    if (resultFirst != VK_SUCCESS) {
+                        spdlog::critical("Failed to enumerate logical device extension properties!");
+                        throw std::runtime_error("Failed to enumerate logical device extension properties!");
+                    }
 
                     std::vector<VkExtensionProperties> supportedExtensions(extensionCount);
-                    vkEnumerateDeviceExtensionProperties(physicalDevice, nullptr, &extensionCount, supportedExtensions.data());
+
+                    VkResult resultSecond =
+                        vkEnumerateDeviceExtensionProperties(physicalDevice, nullptr, &extensionCount, supportedExtensions.data());
+
+                    if (resultSecond != VK_SUCCESS) {
+                        spdlog::critical("Failed to enumerate logical device extension properties!");
+                        throw std::runtime_error("Failed to enumerate logical device extension properties!");
+                    }
 
                     for (const auto& extension : supportedExtensions) {
                         if (std::strcmp(extension.extensionName, extensionName) == 0) {

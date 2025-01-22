@@ -20,7 +20,15 @@ namespace MakerEngine {
 
                             if (surface.has_value()) {
                                 VkBool32 presentSupport = false;
-                                vkGetPhysicalDeviceSurfaceSupportKHR(physicalDevice, i, surface.value().getHandle(), &presentSupport);
+                                VkResult result =
+                                    vkGetPhysicalDeviceSurfaceSupportKHR(
+                                        physicalDevice, i, surface.value().getHandle(), &presentSupport
+                                    );
+
+                                if (result != VK_SUCCESS) {
+                                    spdlog::critical("Failed to query surface support!");
+                                    throw std::runtime_error("Failed to query surface support!");
+                                }
 
                                 if (presentSupport) {
                                     indices.presentFamily = i;

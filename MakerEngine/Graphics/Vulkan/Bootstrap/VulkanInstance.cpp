@@ -106,10 +106,19 @@ namespace MakerEngine {
 
                 bool VulkanInstance::checkValidationLayerSupport() {
                     uint32_t layerCount;
-                    vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
+
+                    VkResult resultFirst = vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
+                    if (resultFirst != VK_SUCCESS) {
+                        spdlog::critical("Failed to enumerate instance layer properties!");
+                        throw std::runtime_error("Failed to enumerate instance layer properties!");
+                    }
 
                     std::vector<VkLayerProperties> availableLayers(layerCount);
-                    vkEnumerateInstanceLayerProperties(&layerCount, availableLayers.data());
+                    VkResult resultSecond = vkEnumerateInstanceLayerProperties(&layerCount, availableLayers.data());
+                    if (resultSecond != VK_SUCCESS) {
+                        spdlog::critical("Failed to enumerate instance layer properties!");
+                        throw std::runtime_error("Failed to enumerate instance layer properties!");
+                    }
 
                     for (const auto& layer : availableLayers) {
                         if (strcmp(layer.layerName, "VK_LAYER_KHRONOS_validation") == 0) {
