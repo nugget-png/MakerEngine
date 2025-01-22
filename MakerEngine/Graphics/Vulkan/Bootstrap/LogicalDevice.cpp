@@ -35,6 +35,15 @@ namespace MakerEngine {
                         VK_KHR_SWAPCHAIN_EXTENSION_NAME
                     };
 
+                    // Ensure all requested extensions are available 
+                    for (const auto& extension : extensions) {
+                        if (!isExtensionSupported(physicalDevice.getHandle(), extension)) {
+                            spdlog::critical("A requested device extension is unavailable!");
+                            throw std::runtime_error("A requested device extension is unavailable!");
+                        }
+                    }
+
+                    // Enable the extensions
                     createInfo.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
                     createInfo.ppEnabledExtensionNames = extensions.data();
 
@@ -82,6 +91,21 @@ namespace MakerEngine {
                     queueCreateInfo.queueCount = queueCount;
                     queueCreateInfo.pQueuePriorities = &queuePriority;
                     return queueCreateInfo;
+                }
+
+                bool LogicalDevice::isExtensionSupported(const VkPhysicalDevice& physicalDevice, const char* extensionName) const {
+                    uint32_t extensionCount;
+                    vkEnumerateDeviceExtensionProperties(physicalDevice, nullptr, &extensionCount, nullptr);
+
+                    std::vector<VkExtensionProperties> supportedExtensions(extensionCount);
+                    vkEnumerateDeviceExtensionProperties(physicalDevice, nullptr, &extensionCount, supportedExtensions.data());
+
+                    for (const auto& extension : supportedExtensions) {
+                        if (std::strcmp(extension.extensionName, extensionName) == 0) {
+                            return true;
+                        }
+                    }
+                    return false;
                 }
 
                 LogicalDevice::~LogicalDevice() {
