@@ -20,10 +20,10 @@ namespace MakerEngine {
 
                     void create(const PhysicalDevice& physicalDevice, const std::optional<WindowSurface>& windowSurface);
 
-                    const VkDevice& getHandle() const;
+                    VkDevice getHandle() const;
 
-                    const VkQueue& getGraphicsQueue() const;
-                    const VkQueue& getPresentationQueue() const;
+                    VkQueue getGraphicsQueue() const;
+                    VkQueue getPresentationQueue() const;
 
                 private:
                     const VkDeviceQueueCreateInfo LogicalDevice::createQueue(

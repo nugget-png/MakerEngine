@@ -66,15 +66,15 @@ namespace MakerEngine {
                     vkGetDeviceQueue(device, indices.presentFamily.value(), 0, &presentQueue);
                 }
 
-                const VkDevice& LogicalDevice::getHandle() const {
+                VkDevice LogicalDevice::getHandle() const {
                     return device;
                 }
 
-                const VkQueue& LogicalDevice::getGraphicsQueue() const {
+                VkQueue LogicalDevice::getGraphicsQueue() const {
                     return graphicsQueue;
                 }
 
-                const VkQueue& LogicalDevice::getPresentationQueue() const {
+                VkQueue LogicalDevice::getPresentationQueue() const {
                     return presentQueue;
                 }
 
