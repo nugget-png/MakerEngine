@@ -15,7 +15,6 @@ namespace MakerEngine {
             ~Window();
 
             void create(int width, int height, const std::string& name);
-            void destroy();
 
             void runLoop();
 
@@ -27,6 +26,8 @@ namespace MakerEngine {
             const std::string& getName() const;
 
         private:
+            void destroy();
+
             GLFWwindow* window;
 
             int width;

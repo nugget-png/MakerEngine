@@ -26,7 +26,6 @@ int main() {
     window.runLoop();
 
     windowSurface.destroy(vulkanInstance);
-    window.destroy();
     engine.shutdown();
 
     return 0;
