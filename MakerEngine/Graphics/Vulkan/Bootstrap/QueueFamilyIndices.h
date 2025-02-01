@@ -19,7 +19,7 @@ namespace MakerEngine {
                     }
                 };
 
-                MAKERENGINE_API QueueFamilyIndices findQueueFamilies(const VkPhysicalDevice& physicalDevice, const std::optional<WindowSurface>& surface);
+                MAKERENGINE_API QueueFamilyIndices findQueueFamilies(VkPhysicalDevice physicalDevice, const std::optional<WindowSurface>& surface);
             }
         }
     }

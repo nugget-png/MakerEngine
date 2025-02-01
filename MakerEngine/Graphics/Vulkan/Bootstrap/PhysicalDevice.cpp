@@ -67,25 +67,25 @@ namespace MakerEngine {
                     physicalDevice = bestDevice;
                 }
 
-                VkPhysicalDeviceFeatures PhysicalDevice::getDeviceFeatures(const VkPhysicalDevice& physicalDevice) const {
+                VkPhysicalDeviceFeatures PhysicalDevice::getDeviceFeatures(VkPhysicalDevice physicalDevice) const {
                     VkPhysicalDeviceFeatures deviceFeatures;
                     vkGetPhysicalDeviceFeatures(physicalDevice, &deviceFeatures);
                     return deviceFeatures;
                 }
 
-                VkPhysicalDeviceProperties PhysicalDevice::getDeviceProperties(const VkPhysicalDevice& physicalDevice) const {
+                VkPhysicalDeviceProperties PhysicalDevice::getDeviceProperties(VkPhysicalDevice physicalDevice) const {
                     VkPhysicalDeviceProperties deviceProperties;
                     vkGetPhysicalDeviceProperties(physicalDevice, &deviceProperties);
                     return deviceProperties;
                 }
 
-                VkPhysicalDeviceMemoryProperties PhysicalDevice::getDeviceMemoryProperties(const VkPhysicalDevice& physicalDevice) const {
+                VkPhysicalDeviceMemoryProperties PhysicalDevice::getDeviceMemoryProperties(VkPhysicalDevice physicalDevice) const {
                     VkPhysicalDeviceMemoryProperties deviceMemoryProperties;
                     vkGetPhysicalDeviceMemoryProperties(physicalDevice, &deviceMemoryProperties);
                     return deviceMemoryProperties;
                 }
 
-                int PhysicalDevice::rateDeviceSuitability(const VkPhysicalDevice& physicalDevice) const {
+                int PhysicalDevice::rateDeviceSuitability(VkPhysicalDevice physicalDevice) const {
                     VkPhysicalDeviceProperties deviceProperties = getDeviceProperties(physicalDevice);
                     VkPhysicalDeviceFeatures deviceFeatures = getDeviceFeatures(physicalDevice);
 
@@ -152,7 +152,7 @@ namespace MakerEngine {
                     return score;
                 }
 
-                const VkPhysicalDevice& PhysicalDevice::getHandle() const {
+                VkPhysicalDevice PhysicalDevice::getHandle() const {
                     return physicalDevice;
                 }
 

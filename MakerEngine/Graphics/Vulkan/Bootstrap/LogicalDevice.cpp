@@ -93,7 +93,7 @@ namespace MakerEngine {
                     return queueCreateInfo;
                 }
 
-                bool LogicalDevice::isExtensionSupported(const VkPhysicalDevice& physicalDevice, const char* extensionName) const {
+                bool LogicalDevice::isExtensionSupported(VkPhysicalDevice physicalDevice, const char* extensionName) const {
                     uint32_t extensionCount;
 
                     VkResult resultFirst =

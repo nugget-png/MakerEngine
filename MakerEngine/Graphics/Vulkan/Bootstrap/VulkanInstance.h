@@ -19,7 +19,7 @@ namespace MakerEngine {
 
                     void create(const std::string& appName, const uint32_t appVersion);
 
-                    const VkInstance& getHandle() const;
+                    VkInstance getHandle() const;
 
                 private:
                     bool checkValidationLayerSupport();
@@ -34,14 +34,14 @@ namespace MakerEngine {
                     );
 
                     VkResult CreateDebugUtilsMessengerEXT(
-                        const VkInstance& instance,
+                        VkInstance instance,
                         const VkDebugUtilsMessengerCreateInfoEXT* pCreateInfo,
                         const VkAllocationCallbacks* pAllocator,
                         VkDebugUtilsMessengerEXT* pDebugMessenger
                     );
 
                     void DestroyDebugUtilsMessengerEXT(
-                        const VkInstance& instance,
+                        VkInstance instance,
                         VkDebugUtilsMessengerEXT debugMessenger,
                         const VkAllocationCallbacks* pAllocator
                     );

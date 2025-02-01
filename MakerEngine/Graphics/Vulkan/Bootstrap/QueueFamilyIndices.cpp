@@ -4,7 +4,7 @@ namespace MakerEngine {
     namespace Graphics {
         namespace Vulkan {
             namespace Bootstrap {
-                MAKERENGINE_API QueueFamilyIndices findQueueFamilies(const VkPhysicalDevice& physicalDevice, const std::optional<WindowSurface>& surface) {
+                MAKERENGINE_API QueueFamilyIndices findQueueFamilies(VkPhysicalDevice physicalDevice, const std::optional<WindowSurface>& surface) {
                     QueueFamilyIndices indices;
                     uint32_t queueFamilyCount;
 

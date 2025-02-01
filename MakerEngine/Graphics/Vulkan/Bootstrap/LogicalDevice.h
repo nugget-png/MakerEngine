@@ -32,7 +32,7 @@ namespace MakerEngine {
                         float queuePriority
                     ) const;
 
-                    bool isExtensionSupported(const VkPhysicalDevice& physicalDevice, const char* extensionName) const;
+                    bool isExtensionSupported(VkPhysicalDevice physicalDevice, const char* extensionName) const;
 
                     VkDevice device;
                     VkQueue graphicsQueue;

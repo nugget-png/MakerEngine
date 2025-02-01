@@ -4,7 +4,7 @@ namespace MakerEngine {
     namespace Graphics {
         namespace Vulkan {
             namespace Bootstrap {
-                MAKERENGINE_API SwapChainSupportDetails querySwapChainSupport(const VkPhysicalDevice& physicalDevice, const VkSurfaceKHR& surface) {
+                MAKERENGINE_API SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface) {
                     SwapChainSupportDetails details;
 
                     vkGetPhysicalDeviceSurfaceCapabilitiesKHR(physicalDevice, surface, &details.capabilities);

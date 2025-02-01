@@ -15,7 +15,7 @@ namespace MakerEngine {
                     std::vector<VkPresentModeKHR> presentModes;
                 };
 
-                MAKERENGINE_API SwapChainSupportDetails querySwapChainSupport(const VkPhysicalDevice& physicalDevice, const VkSurfaceKHR& surface);
+                MAKERENGINE_API SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice physicalDevice, VkSurfaceKHR surface);
             }
         }
     }
