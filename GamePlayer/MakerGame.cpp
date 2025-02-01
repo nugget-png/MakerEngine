@@ -31,7 +31,7 @@ int main() {
     }
     catch (const std::exception& e) {
         // Still cleanup after a critical exception is caught
-        std::cerr << "Exception caught: " << e.what();
+        std::cerr << "Exception caught: " << e.what() << std::endl;
         windowSurface.destroy(vulkanInstance);
         engine.shutdown();
         return EXIT_FAILURE;
