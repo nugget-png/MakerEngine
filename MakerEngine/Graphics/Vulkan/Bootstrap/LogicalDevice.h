@@ -26,7 +26,7 @@ namespace MakerEngine {
                     VkQueue getPresentationQueue() const;
 
                 private:
-                    const VkDeviceQueueCreateInfo LogicalDevice::createQueue(
+                    VkDeviceQueueCreateInfo LogicalDevice::createQueue(
                         const uint32_t queueFamilyIndex,
                         const uint32_t queueCount,
                         float queuePriority
