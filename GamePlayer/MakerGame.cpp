@@ -16,18 +16,27 @@ int main() {
     Vulkan::Bootstrap::LogicalDevice logicalDevice;
     Vulkan::Bootstrap::WindowSurface windowSurface;
 
-    engine.initialize();
-    vulkanInstance.create("Game Player", VK_MAKE_VERSION(1, 0, 0));
-    physicalDevice.pickBestDevice(vulkanInstance);
+    try {
+        engine.initialize();
+        vulkanInstance.create("Game Player", VK_MAKE_VERSION(1, 0, 0));
+        physicalDevice.pickBestDevice(vulkanInstance);
 
-    window.create(1280, 720, "Game Player");
-    windowSurface.create(vulkanInstance, window);
-    logicalDevice.create(physicalDevice, windowSurface);
-    window.runLoop();
+        window.create(1280, 720, "Game Player");
+        windowSurface.create(vulkanInstance, window);
+        logicalDevice.create(physicalDevice, windowSurface);
+        window.runLoop();
 
-    windowSurface.destroy(vulkanInstance);
-    engine.shutdown();
+        windowSurface.destroy(vulkanInstance);
+        engine.shutdown();
+    }
+    catch (const std::exception& e) {
+        // Still cleanup after a critical exception is caught
+        std::cerr << "Exception caught: " << e.what();
+        windowSurface.destroy(vulkanInstance);
+        engine.shutdown();
+        return EXIT_FAILURE;
+    }
 
-    return 0;
+    return EXIT_SUCCESS;
 }
 
