@@ -18,6 +18,7 @@ endif()
 
 # Target link libraries
 target_link_libraries(MakerEngine PRIVATE ${CMAKE_SOURCE_DIR}/MakerEngine/Libraries/GLFW/glfw3.lib)
+target_link_libraries(MakerEngine PRIVATE ${CMAKE_SOURCE_DIR}/MakerEngine/Libraries/lua54/lua54.lib)
 
 # Include directories
 target_include_directories(MakerEngine PUBLIC "Global")
