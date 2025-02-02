@@ -6,10 +6,10 @@
 
 ## Current Status
    - The foundation of the engine is being developed using a CMake-based build system.
-   - The engine currently doesn't have many source files since the project just started.
    - The engine will use Vulkan for rendering, however no functionality has been implemented yet.
    - The engine plans to eventually support multiple platforms (Windows, macOS, Linux).
    - The engine can create a very basic window, but can't render anything.
+   - The engine can execute lua scripts, but there isn't an API to use.
 
 ## Planned Features
   - Scripting with Lua
