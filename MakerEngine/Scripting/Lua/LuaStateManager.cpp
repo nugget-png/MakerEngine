@@ -13,7 +13,7 @@ namespace MakerEngine {
                 }
                 luaL_openlibs(luaState);
                 spdlog::debug("Lua state created successfully");
-                spdlog::debug("Lua state address: {}", luaState);
+                spdlog::debug("Lua state address: {}", (const char*)luaState);
             }
 
             void LuaStateManager::executeFile(const std::string& path) {
